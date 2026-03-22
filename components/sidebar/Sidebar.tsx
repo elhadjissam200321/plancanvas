@@ -9,9 +9,10 @@ import { PLANS } from "@/lib/stripe";
 
 interface SidebarProps {
   userId: string;
+  onClose?: () => void;
 }
 
-export default function Sidebar({ userId }: SidebarProps) {
+export default function Sidebar({ userId, onClose }: SidebarProps) {
   const router = useRouter();
   const {
     pages,
@@ -97,6 +98,17 @@ export default function Sidebar({ userId }: SidebarProps) {
             <span className="ml-auto text-xs text-slate-400">
               {isSaving ? "Saving..." : "Unsaved"}
             </span>
+          )}
+          {onClose && (
+            <button
+              onClick={onClose}
+              className="ml-auto md:hidden p-1 text-slate-400 hover:text-white"
+              aria-label="Close menu"
+            >
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
           )}
         </div>
       </div>
